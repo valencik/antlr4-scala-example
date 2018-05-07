@@ -1,0 +1,17 @@
+language: scala
+scala:
+   - 2.12.6
+
+cache:
+  directories:
+    - "$HOME/.ivy2/cache"
+    - "$HOME/.sbt/boot"
+
+jdk:
+  - oraclejdk8
+
+script:
+  - sbt clean scalastyle test:scalastyle scalafmtCheck scalafmtSbtCheck coverage test coverageReport
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
